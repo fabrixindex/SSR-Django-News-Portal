@@ -1,26 +1,35 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.utils.timezone import now
 from .models import Article
 
-def articles(request):
-    if request.method == "POST":
-        title = request.POST["title"]
-        author = request.POST["author"]
-        content = request.POST["content"]
-        publication_date = request.POST["publication_date"]
-        last_updated = request.POST["last_updated"]
+def getArticles(request):
+    articles = Article.objects.all()  
+    return render(request, "articles/articles_list.html", {"articles": articles})
 
+def getArticleDetail(request, id):
+    article = get_object_or_404(Article, id=id)
+    return render(request, "articles/article_detail.html", {"article": article})
+
+def createArticle(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        author = request.POST.get("author")
+        content = request.POST.get("content")
+        publication_date = request.POST.get("publication_date")
+        
         article = Article(
             title=title,
             author=author,
             content=content,
             publication_date=publication_date,
-            last_updated=last_updated
+            last_updated=now()
         )
         article.save()
 
-        return redirect("inicio")
+        return redirect("article_list")
     else:
-        return render(request, "articles/article.html")
+        return render(request, "articles/create_article.html")
+
 
 def searchArticle(request):
     query = request.GET.get('q', '').strip()  
@@ -29,4 +38,4 @@ def searchArticle(request):
         articles = Article.objects.filter(title__icontains=query)  
     else:
         articles = Article.objects.all()  
-    return render(request, "articles/article.html", {"articles": articles, "query": query})
+    return render(request, "articles/articles_list.html", {"articles": articles, "query": query})

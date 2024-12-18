@@ -1,0 +1,58 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+{% block title %}TruethLine | Articles{% endblock title %}
+
+{% block content %}
+<div class="article-container">
+    <header class="article-header">
+        <h1 class="title-article">Article List</h1>
+        <a href="{% url 'create_article' %}" class="btn-create">Create New Article</a>
+    </header>
+    
+    <section class="article-search">
+        <h3>Search Article</h3>
+        <form action="{% url 'search_article' %}" method="GET" class="search-form">
+            <input 
+                type="text" 
+                name="q" 
+                placeholder="Search articles..." 
+                value="{{ query }}" 
+                aria-label="Search articles" 
+                required 
+                class="search-input">
+            <button type="submit" class="btn-search">Search</button>
+        </form>
+        {% if query %}
+            <p class="search-results">Search results for: <strong>"{{ query }}"</strong></p>
+        {% endif %}
+    </section>
+    
+    <section class="article-list">
+        {% if articles %}
+        <ul class="articles">
+            {% for article in articles %}
+            <li class="article-card">
+                <article>
+                    <h2 class="article-title">{{ article.title }}</h2>
+                    <p class="article-meta"><strong>Author:</strong> {{ article.author }}</p>
+                    <p class="article-meta"><strong>Date:</strong> {{ article.publication_date }}</p>
+                    <a href="{% url 'article_detail' article.id %}" class="btn-read" aria-label="Read more about {{ article.title }}">
+                        Read more
+                    </a>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p class="no-articles">
+            {% if query %}
+                No articles found matching "<strong>{{ query }}</strong>".
+            {% else %}
+                No articles available.
+            {% endif %}
+        </p>
+        {% endif %}
+    </section>
+</div>
+{% endblock content %}

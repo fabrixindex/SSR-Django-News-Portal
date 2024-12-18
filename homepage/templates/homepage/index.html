@@ -2,11 +2,15 @@
 {% load static %}
 
 {% block title %}
-        NombrePagina | Inicio
+TruethLine | Inicio
 {% endblock title %}
 
 {% block content %}
-        <div>
-            <h2>Soy un subtitulo</h2>
-        </div>
+<div class="banner">
+    <div class="banner-content">
+        <h1>Welcome to TruethLine</h1>
+        <p>A direct line to the trueth.<br>The latest news, instantly!</p>
+        <a href="{% url 'articles' %}" class="btn-primary">View Articles</a>
+    </div>
+</div>
 {% endblock content %}

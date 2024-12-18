@@ -1,0 +1,19 @@
+{% extends 'homepage/base.html' %}
+{% load static %}
+
+{% block title %} TruethLine | {{ article.title }} {% endblock title %}
+
+{% block content %}
+    <div class="article-container-detail">
+        <div class="article-header-detail">
+            <h1>{{ article.title }}</h1>
+            <p><strong>Author:</strong> {{ article.author }}</p>
+            <p><strong>Publication Date:</strong> {{ article.publication_date }}</p>
+        </div>
+        <div class="article-content-detail">
+            <p>{{ article.content }}</p>
+        </div>
+        <a href="{% url 'articles' %}" class="btn-back-detail">Back to the list</a>
+    </div>
+{% endblock content %}
+

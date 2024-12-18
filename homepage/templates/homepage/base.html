@@ -5,31 +5,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        {% block title %}
-        
-        {% endblock title %}
-    </title>
+    <title>{% block title %}TruethLine{% endblock title %}</title>
     <link  href="{% static  'homepage/css/styles.css' %}" rel="stylesheet">
+    <link  href="{% static  'articles/css/styles.css' %}" rel="stylesheet">
+    <link  href="{% static  'users/css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
-    <h1 class="title">Voy a ser un futuro Logo</h1>
-    
-    <nav>
-        <div>
-            <ul>
-                <li><a href="{% url 'inicio' %}"> Inicio </a></li>
-                <li><a href="{% url 'articles' %}"> Articles </a></li>
-                <li><a href="{% url 'usuario' %}"> User </a></li>
-            </ul>
+    <header>
+        <div class="logo">
+            <h1>TruethLine</h1>
         </div>
-    </nav>
+        <nav>
+            <div class="menu-container">
+            
+                <button class="menu-btn" onclick="toggleCategories()">☰</button>
+    
+                <ul class="navbar">
+                    <li id="current-time"></li>
+                    <a href="{% url 'inicio' %}"><li>Home</li></a>
+                    <a href="{% url 'articles' %}"><li>Top Articles</li></a>
+                    <a href="{% url 'user_profile' %}"><li>Profile</li></a>
+                    <a href="#"><li>Login</li></a>
+                    <a href="#"><li>Sing Up</li></a>
+                </ul>
+    
+                <ul class="categories" id="categories-menu">
+                    <li><a href="#">Category 1</a></li>
+                    <li><a href="#">Category 2</a></li>
+                    <li><a href="#">Category 3</a></li>
+                    <li><a href="#">Category 4</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
-    
-    {% block content %}
-        
-    {% endblock content %}
-        
-    
+    <main>
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 TruthLine. All rights reserved.</p>
+            <p>Developed by <a href="https://github.com/fabrixindex" target="_blank">Fabricio Papetti</a></p>
+        </div>
+    </footer>    
+
+    <script src="{% static 'homepage/js/menu.js' %}"></script>
 </body>
 </html>
