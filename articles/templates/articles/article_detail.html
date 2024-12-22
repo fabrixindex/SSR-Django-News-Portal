@@ -13,6 +13,8 @@
         <div class="article-content-detail">
             <p>{{ article.content }}</p>
         </div>
+        <a href="{% url 'update_article' article.id %}">Update article</a>
+        <a href="{% url 'delete_article' article.id %}">Delete article</a>
         <a href="{% url 'articles' %}" class="btn-back-detail">Back to the list</a>
     </div>
 {% endblock content %}

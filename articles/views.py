@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import now
 from .models import Article
+from .forms.articles.forms import ArticleForm
 
 def getArticles(request):
     articles = Article.objects.all()  
@@ -12,23 +13,17 @@ def getArticleDetail(request, id):
 
 def createArticle(request):
     if request.method == "POST":
-        title = request.POST.get("title")
-        author = request.POST.get("author")
-        content = request.POST.get("content")
-        publication_date = request.POST.get("publication_date")
-        
-        article = Article(
-            title=title,
-            author=author,
-            content=content,
-            publication_date=publication_date,
-            last_updated=now()
-        )
-        article.save()
-
-        return redirect("article_list")
+        form = ArticleForm(request.POST)
+        if form.is_valid():
+            article = form.save(commit=False)
+            article.publication_date = form.cleaned_data.get('publication_date', now())
+            article.last_updated = now()
+            article.save()
+            return redirect("articles")
     else:
-        return render(request, "articles/create_article.html")
+        form = ArticleForm()
+
+    return render(request, "articles/create_article.html", {"form": form})
 
 
 def searchArticle(request):
@@ -39,3 +34,23 @@ def searchArticle(request):
     else:
         articles = Article.objects.all()  
     return render(request, "articles/articles_list.html", {"articles": articles, "query": query})
+
+def deleteArticle(request, id):
+    article = Article.objects.get(id=id)
+    article.delete()
+    return redirect("articles")
+
+def updateArticle(request, id):
+    article = get_object_or_404(Article, id=id)
+    
+    if request.method == "POST":
+        article_form = ArticleForm(request.POST, instance=article)
+        
+        if article_form.is_valid():
+            article_form.save()
+            return redirect('article_detail', id=article.id)  
+
+    else:
+        article_form = ArticleForm(instance=article)
+
+    return render(request, "articles/update_article.html", {"form": article_form, "article": article})

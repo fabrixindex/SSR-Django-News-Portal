@@ -1,9 +1,19 @@
-{% load static %}
+{% extends 'homepage/base.html' %}
 
 {% block title %}TruethLine | Profile{% endblock title %}
 
 {% block content %}
 <div>
-    <h2>PROFILE</h2>
+    <h2>User Profile</h2>
+
+    <div>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Bio:</strong> {{ user.bio }}</p>
+        <p><strong>Birth Date:</strong> {{ user.birth_date }}</p>
+    </div>
+
+    <a href="{% url 'logout' %}">Logout</a>
+    <a href="#">Edit Profile</a>
 </div>
 {% endblock content %}

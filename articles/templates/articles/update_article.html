@@ -1,12 +1,12 @@
 {% extends 'homepage/base.html' %}
 {% load static %}
 
-{% block title %}TruethLine | Create Article{% endblock title %}
+{% block title %}TruethLine | Update Article{% endblock title %}
 
 {% block content %}
 <div class="create-article-container">
-    <h2 class="create-article-title-form">Create New Article</h2>
-    <form action="{% url 'create_article' %}" method="post" class="create-article-form">
+    <h2 class="create-article-title-form">Update your Article</h2>
+    <form action="{% url 'update_article' article.id %}" method="post" class="create-article-form">
         {% csrf_token %}
 
         <div class="form-group">
@@ -24,8 +24,7 @@
             {{ form.content }}
         </div>
 
-        <button type="submit" class="submit-btn">Create Article</button>
+        <button type="submit" class="submit-btn">UPDATE</button>
     </form>
 </div>
 {% endblock content %}
-
