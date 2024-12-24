@@ -1,23 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TruethLine | Login</title>
-</head>
-<body>
-    <h1>Login</h1>
+{% extends 'homepage/base.html' %}
+{% load static %}
 
-    <form action="" method="post">
-        {% csrf_token %}
+{% block title %}TruethLine | Login{% endblock title %}
 
-        <input type="text" name="username" placeholder="Enter your username or email">
-        <input type="password" name="password" placeholder="Enter your password">
+{% block content %}
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2 class="login-title">Welcome Back!</h2>
+            <p class="login-subtitle">Please login to your account</p>
 
-        <div>
-            <button type="submit">Login</button>
+            {% if messages %}
+            <div class="messages-container">
+                {% for message in messages %}
+                    <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <form action="" method="post" class="login-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <input 
+                        type="text" 
+                        name="username" 
+                        placeholder="Username or Email" 
+                        class="form-input" 
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        placeholder="Password" 
+                        class="form-input" 
+                        required
+                    >
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Login</button>
+                </div>
+            </form>
+
+            <p class="login-footer">
+                Don't have an account? <a href="{% url 'register' %}">Sign up</a>
+            </p>
         </div>
-    </form>
-</body>
-</html>
-
+    </div>
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'homepage/base.html' %}
+
+{% block title %}TruethLine | Edit Profile{% endblock title %}
+
+{% block content %}
+<div class="edit-profile-wrapper">
+    <div class="edit-profile-box">
+        <h2 class="edit-profile-title">Edit Your Profile</h2>
+
+        <form method="post" class="edit-profile-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="edit-profile-btn">Save Changes</button>
+        </form>
+
+        <div class="edit-profile-links">
+            <a href="{% url 'user_profile' %}">Back to Profile</a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.timezone import now
 from .models import Article
 from .forms.articles.forms import ArticleForm
+from django.contrib.auth.decorators import login_required
 
 def getArticles(request):
     articles = Article.objects.all()  
@@ -11,6 +12,7 @@ def getArticleDetail(request, id):
     article = get_object_or_404(Article, id=id)
     return render(request, "articles/article_detail.html", {"article": article})
 
+@login_required(login_url="login")
 def createArticle(request):
     if request.method == "POST":
         form = ArticleForm(request.POST)
@@ -35,11 +37,13 @@ def searchArticle(request):
         articles = Article.objects.all()  
     return render(request, "articles/articles_list.html", {"articles": articles, "query": query})
 
+@login_required(login_url="login")
 def deleteArticle(request, id):
     article = Article.objects.get(id=id)
     article.delete()
     return redirect("articles")
 
+@login_required(login_url="login")
 def updateArticle(request, id):
     article = get_object_or_404(Article, id=id)
     

@@ -1,33 +1,33 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from ...models import User
-
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-#! REVISAR
-#? SIMPLIFICAR
 
-class UserForm(UserCreationForm):
-    bio = forms.CharField(max_length=500, required=False, widget=forms.Textarea(attrs={'placeholder': 'Tell us about yourself'}))
-    birth_date = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
+class UserForm(forms.ModelForm):
+    password2 = forms.CharField(
+        label="Confirm Password",
+        widget=forms.PasswordInput(attrs={'class': 'form-control'}),
+        required=True
+    )
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'password1', 'password2']
+        fields = ['username', 'email', 'first_name', 'last_name', 'password']
+        widgets = {
+            'password': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
 
-    def save(self, commit=True):
-        user = super().save(commit=False)  # Guarda el usuario (sin el perfil)
+    def clean_password2(self):
+        password = self.cleaned_data.get('password')
+        password2 = self.cleaned_data.get('password2')
 
-        # Aquí es donde asignamos los campos adicionales
-        if 'bio' in self.cleaned_data:
-            user.bio = self.cleaned_data['bio']  # Agregar bio al campo del usuario (esto lo tendrás que agregar en el modelo si es necesario)
-        if 'birth_date' in self.cleaned_data:
-            user.birth_date = self.cleaned_data['birth_date']  # Agregar birth_date al campo del usuario
+        if password and password2 and password != password2:
+            raise forms.ValidationError("Las contraseñas no coinciden.")
+        return password2
 
-        if commit:
-            user.save()  # Guarda el usuario con los nuevos campos adicionales
 
-        return user
 
+class EditProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name']

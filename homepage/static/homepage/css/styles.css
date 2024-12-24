@@ -20,7 +20,7 @@ header {
 }
 
 .logo h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
@@ -50,12 +50,14 @@ header {
 }
 
 nav {
-    width: 100%;
-    top: 0;
-    left: 0;
-    background-color: #333;  
-    z-index: 1000;  
+    width: 95%; /* Puedes ajustar el ancho según lo que desees */
+    margin: 0 auto; /* Esto centra el nav */
+    background-color: #333;
+    z-index: 1000;
+    border-radius: 25px; /* Esto añade bordes redondeados */
+    padding: 3px 0; /* Añadir un poco de espacio interno */
 }
+
 
 /* Contenedor del menú */
 .menu-container {
@@ -96,7 +98,7 @@ nav {
     color: rgb(0, 0, 0);
     border: none;
     border-radius: 100%;  
-    padding: 15px 15px;
+    padding: 8px 8px;
     font-size: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -159,10 +161,6 @@ nav {
     background-color: #555;
 }
 
-/* Evita el scroll cuando el menú está abierto */
-body {
-    overflow: hidden;  
-}
 
 #current-time {
     text-align: center;
@@ -234,20 +232,20 @@ h1, p {
 }
 
 main {
-    padding: 2rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
+/* Estilos del footer */
 footer {
     background-color: #222;
     color: #ccc;
     text-align: center;
     padding: 1rem;
-    margin-top: 2rem;
     font-size: 0.9rem;
 }
 
+/* Estilos del contenido del footer */
 .footer-content a {
     color: #ffa500;
     text-decoration: none;
@@ -255,4 +253,20 @@ footer {
 
 .footer-content a:hover {
     text-decoration: underline;
+}
+
+/* Asegurando que el footer siempre quede al final de la página */
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+}
+
+main {
+    flex: 1; /* Permite que el contenido principal ocupe el espacio restante */
 }
