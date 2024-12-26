@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'homepage',
     'users',
     'articles',
-    'notifications'
+    'notifications',
+    'messaging'
 ]
 
 MIDDLEWARE = [

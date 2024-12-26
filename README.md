@@ -6,6 +6,11 @@
 
 A simple article management system built with Django for handling articles, creating new ones, and searching existing articles. This project is a **Server-Side Rendered (SSR)** application, meaning all content is rendered on the server before being sent to the client.
 
+<p align="center">
+    <strong>Click below to watch a video of the app in action!</strong>
+    <br>
+    <a href="URL_DEL_VIDEO" target="_blank">Watch the video</a>
+</p>
 
 ## Features
 
@@ -101,7 +106,7 @@ If you wish to contribute to this project, follow these steps:
 6. **Open a Pull Request on GitHub.**
 
 
-### CONTACT
+### Contact
 
 📫 How to reach me [fabriciopapetti1121@gmail.com](mailto:fabriciopapetti1121@gmail.com)
 

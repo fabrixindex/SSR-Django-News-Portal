@@ -1,0 +1,28 @@
+{% extends 'homepage/base.html' %}
+
+{% block title %}TruthLine | Send Message{% endblock title %}
+
+{% block content %}
+<div class="send-message-container">
+    <h2 class="send-message-title">Send a Message</h2>
+    <form action="" method="post" class="send-message-form">
+        {% csrf_token %}
+        
+        <div class="form-group">
+            <label for="receiver" class="form-label">Select Receiver:</label>
+            <select name="receiver" id="receiver" class="form-select">
+                {% for user in users %}
+                    <option value="{{ user.username }}">{{ user.username }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="content" class="form-label">Message Content:</label>
+            <textarea name="content" id="content" class="form-textarea" rows="5" placeholder="Write your message here..."></textarea>
+        </div>
+
+        <button type="submit" class="form-button">Send Message</button>
+    </form>
+</div>
+{% endblock content %}

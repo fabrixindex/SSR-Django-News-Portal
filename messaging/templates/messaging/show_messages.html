@@ -1,0 +1,30 @@
+{% extends 'homepage/base.html' %}
+
+{% block title %}TruthLine | Messages{% endblock title %}
+
+{% block content %}
+<div class="message-container">
+    <h2 class="message-title">My Messages</h2>
+    
+    {% if messages %}
+        <div class="message-list">
+            {% for message in messages %}
+                <div class="message-card">
+                    <div class="message-header">
+                        <span class="message-sender"><strong>From:</strong> {{ message.sender }}</span>
+                        <span class="message-date">{{ message.shipping_date|date:"d/m/Y H:i" }}</span>
+                    </div>
+                    <div class="message-body">
+                        <p class="message-receiver"><strong>To:</strong> {{ message.receiver }}</p>
+                        <p class="message-content">{{ message.content }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="no-messages">
+            <p>You don't have any messages at the moment.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
