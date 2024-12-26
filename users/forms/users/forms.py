@@ -1,7 +1,6 @@
 from django import forms
-from ...models import User
+from ...modelsProfile import Profile
 from django.contrib.auth.models import User
-
 
 class UserForm(forms.ModelForm):
     password2 = forms.CharField(
@@ -25,9 +24,13 @@ class UserForm(forms.ModelForm):
             raise forms.ValidationError("Las contraseñas no coinciden.")
         return password2
 
-
-
 class EditProfileForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'first_name', 'last_name']
+
+
+class EditProfilePhotoForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['photo']

@@ -13,4 +13,94 @@ TruethLine | Inicio
         <a href="{% url 'articles' %}" class="btn-primary">View Articles</a>
     </div>
 </div>
+
+
+<section class="latest-news-hp">
+    <h2 class="latest-news-hp-title">Latest Headlines</h2>
+    <ul id="news-list-hp">
+        {% for article in articles %}
+        <li class="article-card-hp">
+            <h3 class="article-title-hp">{{ article.title }}</h3>
+            <p class="article-meta-hp">
+                <strong>Author:</strong> {{ article.author }}<br>
+                <strong>Published on:</strong> {{ article.publication_date|date:"F j, Y" }}
+            </p>
+            <p class="article-content-hp">
+                {{ article.content|truncatewords:20 }}...
+            </p>
+            <a href="{% url 'article_detail' article.id %}" class="btn-read-hp" aria-label="Read more about {{ article.title }}">
+                Read more
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section id="advantages" class="wow animate__animated animate__zoomIn">
+    <h2>Why Choose TruethLine?</h2>
+    <div id="advantages-list" class="advantages-list-hp">
+        <div id="advantage-1" class="wow animate__animated animate__zoomIn">
+            <h3>Instant Updates</h3>
+            <p>Stay ahead with real-time news updates as they happen.</p>
+        </div>
+        <div id="advantage-2" class="wow animate__animated animate__zoomIn">
+            <h3>Trusted Sources</h3>
+            <p>We provide news from the most reliable and verified sources.</p>
+        </div>
+        <div id="advantage-3" class="wow animate__animated animate__zoomIn">
+            <h3>Tailored Content</h3>
+            <p>Receive news tailored to your preferences and interests.</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .banner {
+        background-image: url("{% static 'homepage/assets/banner.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+        height: 450px;
+        border-radius: 20px;
+        margin: 30px auto;
+        max-width: 95%;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+        margin-bottom: 50px;
+        position: relative;
+    }
+
+    .banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6); 
+        border-radius: 20px; 
+        z-index: -1; 
+    }
+    
+    .banner-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+    }
+    
+    .banner h1 {
+        font-size: 3.5em; 
+        margin-bottom: 20px;
+        text-shadow: 4px 4px 10px rgba(0, 0, 0, 1); 
+    }
+    
+    .banner p {
+        font-size: 1.7em; 
+        margin-bottom: 30px;
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 1); 
+    }
+</style>
+
 {% endblock content %}

@@ -1,11 +1,20 @@
 {% extends 'homepage/base.html' %}
+{% load static %}
 
-{% block title %}TruethLine | Profile{% endblock title %}
+{% block title %}TruethLine | {{ user.username }}'s Profile{% endblock title %}
 
 {% block content %}
 <div class="profile-wrapper">
     <div class="profile-box">
         <h2 class="profile-title">{{ user.username }}</h2>
+
+        <div class="profile-picture-container">
+            {% if user.profile.photo %}
+                <img src="{{ user.profile.photo.url }}" alt="profile-picture" class="profile-picture">
+            {% else %}
+                <img src="{% static 'users/assets/blank-profile-picture.webp' %}" alt="default-profile-picture" class="profile-picture">
+            {% endif %}
+        </div>
 
         <div class="user-details">
             <p><strong>Username:</strong> {{ user.username }}</p>

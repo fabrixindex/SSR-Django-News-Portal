@@ -9,6 +9,9 @@
     <link  href="{% static  'homepage/css/styles.css' %}" rel="stylesheet">
     <link  href="{% static  'articles/css/styles.css' %}" rel="stylesheet">
     <link  href="{% static  'users/css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="icon" href="{% static 'homepage/assets/LogoTL.png' %}" type="image/png">
+    <link rel="shortcut icon" href="{% static 'homepage/assets/LogoTL.png' %}" type="image/png">
 </head>
 <body>
     <header>
@@ -25,7 +28,15 @@
                     <a href="{% url 'inicio' %}"><li>Home</li></a>
                     <a href="{% url 'articles' %}"><li>Top Articles</li></a>
                     {% if user.is_authenticated %}
-                        <a href="{% url 'user_profile' %}"><li>Profile</li></a>
+                    <a href="{% url 'user_profile' %}">
+                        <li>
+                            {% if user.profile.photo %}
+                                <img src="{{ user.profile.photo.url }}" alt="Profile" class="profile-picture-small">
+                            {% else %}
+                                <img src="{% static 'users/assets/blank-profile-picture.webp' %}" alt="Profile" class="profile-picture-small">
+                            {% endif %}
+                        </li>
+                    </a>
                         <a href="{% url 'logout' %}"><li>Logout</li></a>
                     
                     {% else %}
@@ -35,10 +46,10 @@
                 </ul>
     
                 <ul class="categories" id="categories-menu">
-                    <li><a href="#">Category 1</a></li>
-                    <li><a href="#">Category 2</a></li>
-                    <li><a href="#">Category 3</a></li>
-                    <li><a href="#">Category 4</a></li>
+                    <li><a href="{% url 'soon!' %}">Politic</a></li>
+                    <li><a href="{% url 'soon!' %}">Economy</a></li>
+                    <li><a href="{% url 'soon!' %}">Sport</a></li>
+                    <li><a href="{% url 'soon!' %}">World</a></li>
                 </ul>
             </div>
         </nav>
@@ -52,10 +63,18 @@
     <footer>
         <div class="footer-content">
             <p>&copy; 2024 TruthLine. All rights reserved.</p>
-            <p>Developed by <a href="https://github.com/fabrixindex" target="_blank">Fabricio Papetti</a></p>
+            <p>
+                Developed by <a href="https://github.com/fabrixindex" target="_blank">Fabricio Papetti</a>
+            </p>
+            <p>
+                <a href="{% url 'about_me' %}" class="footer-about-link">About Me</a>
+            </p>
         </div>
-    </footer>    
-
+    </footer>
+    
     <script src="{% static 'homepage/js/menu.js' %}"></script>
+    <script>
+        new WOW().init();
+    </script>    
 </body>
 </html>

@@ -4,11 +4,7 @@
 {% block title %}TruethLine | Articles{% endblock title %}
 
 {% block content %}
-<div class="article-container">
-    <header class="article-header">
-        <h1 class="title-article">Article List</h1>
-        <a href="{% url 'create_article' %}" class="btn-create">Create New Article</a>
-    </header>
+    <h2 class="title-article">Explore Our Latest Articles</h2>
     
     <section class="article-search">
         <h3>Search Article</h3>
@@ -27,6 +23,10 @@
             <p class="search-results">Search results for: <strong>"{{ query }}"</strong></p>
         {% endif %}
     </section>
+
+    <div class="btn-container">
+        <a href="{% url 'create_article' %}" class="btn-create">Create New Article</a>
+    </div>
     
     <section class="article-list">
         {% if articles %}
@@ -37,6 +37,9 @@
                     <h2 class="article-title">{{ article.title }}</h2>
                     <p class="article-meta"><strong>Author:</strong> {{ article.author }}</p>
                     <p class="article-meta"><strong>Date:</strong> {{ article.publication_date }}</p>
+                    <p class="article-content-hp">
+                        {{ article.content|truncatewords:40 }}...
+                    </p>
                     <a href="{% url 'article_detail' article.id %}" class="btn-read" aria-label="Read more about {{ article.title }}">
                         Read more
                     </a>

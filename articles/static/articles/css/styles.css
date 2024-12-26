@@ -1,71 +1,75 @@
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-h1, h2, h3 {
-    margin: 0;
-}
-
 /* Article Container */
-.article-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-/* Header */
-.article-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
 .title-article {
-    font-size: 2.5em;
-    color: #d7dce0;
+    font-family: 'Georgia', serif; 
+    font-size: 2.5em; 
+    margin-top: 40px;
+    margin-bottom: 30px; 
+    color: #3e5a76; 
+    text-align: center; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    padding: 10px 0; 
+    border-bottom: 3px solid #1e90ff; 
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.title-article:hover {
+    color: #1e90ff; 
+}
+
+/* Contenedor del botón fuera del header */
+.btn-container {
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* Estilos del botón "Create New Article" */
 .btn-create {
     background-color: #1e90ff;
     color: #fff;
-    padding: 10px 20px;
+    padding: 15px 25px;
     border-radius: 5px;
-    font-size: 1em;
+    font-size: 1.2em;
     transition: background-color 0.3s ease;
     margin: 0.5em;
+    text-decoration: none;
 }
 
 .btn-create:hover {
     background-color: #4682b4;
 }
-
 /* Search Section */
 .article-search {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
 }
 
 .search-form {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     margin-top: 10px;
 }
 
 .search-input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-search {
     background-color: #1e90ff;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-size: 1em;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -77,76 +81,118 @@ h1, h2, h3 {
 
 .search-results {
     margin-top: 10px;
-    font-size: 1em;
-    color: #555;
+    font-size: 1.1em;
+    color: #444;
 }
 
+/* Article List */
+.article-list {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
 .articles {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
+    justify-content: center;
     list-style: none;
     padding: 0;
-    margin: 20px 0;
-    justify-content: center; 
 }
 
 /* Card de artículo */
 .article-card {
     background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 300px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 25%;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 /* Título del artículo */
 .article-title {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333333;
+    font-size: 1.75rem;
+    margin-bottom: 15px;
+    color: #2c3e50;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.4;
 }
 
 /* Metadatos del artículo */
 .article-meta {
-    font-size: 0.9rem;
-    color: #666666;
+    font-size: 0.95rem;
+    color: #95a5a6;
     margin: 5px 0;
+}
+
+/* Contenido del artículo */
+.article-content-hp {
+    font-size: 1rem;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+    line-height: 1.6;
 }
 
 /* Botón de leer más */
 .btn-read {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #007bff;
+    align-self: center;  /* Centrado del botón */
+    padding: 12px 25px;
+    background-color: #3498db;
     color: #ffffff;
     text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    font-size: 1.1em;
     text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: auto;
+    margin-top: 20px; /* Asegura que el botón no quede pegado al contenido */
+    display: inline-block;
 }
 
+/* Efecto hover para el botón */
 .btn-read:hover {
-    background-color: #0056b3;
+    background-color: #2980b9;
+    transform: translateY(-3px); 
 }
 
 /* Estilo para el mensaje cuando no hay artículos */
 .no-articles {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: #888888;
     text-align: center;
-    margin: 20px 0;
+    margin: 30px 0;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .article-header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .articles {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .article-card {
+        width: 100%;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
 }
 
 /* Estilos para formulario de envio */
@@ -162,72 +208,106 @@ h1, h2, h3 {
 }
 
 .create-article-title-form {
-    text-align: center;
-    color: #333;
-    margin-bottom: 20px;
+    font-family: 'Georgia', serif; 
+    font-size: 2em; 
+    margin-top: 40px;
+    margin-bottom: 30px; 
+    color: #3e5a76; 
+    text-align: center; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    padding: 10px 0; 
+    border-bottom: 3px solid #1e90ff; 
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.create-article-form:hover {
+    color: #1e90ff;  
 }
 
 .create-article-form {
-    display: flex;
-    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
-label {
-    font-size: 1rem;
-    color: #333;
-    margin-bottom: 5px;
+.form-label {
     display: block;
-}
-
-.form-input, .form-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.form-textarea {
-    resize: vertical;
-    height: 150px;
-}
-
-.submit-btn {
-    background-color: #007bff;
-    color: #fff;
-    padding: 12px;
     font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.form-label-title {
+    color: #2c3e50;
+}
+
+.form-label-author {
+    color: #8e44ad;
+}
+
+.form-label-content {
+    color: #27ae60;
+}
+
+/* Estilos para los campos de formulario (inputs, textareas) */
+.create-article-form input,
+.create-article-form textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilos de los campos al enfocar */
+.create-article-form input:focus,
+.create-article-form textarea:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Estilos del botón de envío */
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #3498db;
+    color: #ffffff;
+    font-size: 1.2rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
+    text-align: center;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.submit-btn:hover {
-    background-color: #0056b3;
+.submit-btn-create {
+    background-color: #1e90ff;
 }
 
-.form-input:focus, .form-textarea:focus {
-    border-color: #007bff;
+.submit-btn-create:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+}
+
+.submit-btn:focus {
     outline: none;
 }
 
-@media (max-width: 600px) {
-    .create-article-container {
-        padding: 15px;
-    }
-
-    .create-article-title-form {
-        font-size: 1.5rem;
-    }
-
-    .submit-btn {
-        font-size: 1rem;
+/* Responsividad */
+@media (max-width: 768px) {
+    .create-article-form {
+        padding: 20px;
     }
 }
 
@@ -266,17 +346,61 @@ label {
     margin-bottom: 30px;
 }
 
-.btn-back-detail {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+/* Contenedor de los botones en la sección de detalle del artículo */
+.article-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Botón para actualizar el artículo */
+.btn-update {
+    padding: 12px 20px;
+    background-color: #3498db; /* Azul */
+    color: #ffffff;
     text-decoration: none;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-update:hover {
+    background-color: #2980b9; /* Color más oscuro al pasar el cursor */
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+/* Botón para eliminar el artículo */
+.btn-delete {
+    padding: 12px 20px;
+    background-color: #e74c3c; /* Rojo */
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b; /* Color más oscuro al pasar el cursor */
+    transform: translateY(-3px); /* Efecto de elevación */
+}
+
+/* Botón para volver a la lista */
+.btn-back-detail {
+    padding: 12px 20px;
+    background-color: #2ecc71; /* Verde */
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .btn-back-detail:hover {
-    background-color: #0056b3;
+    background-color: #27ae60; /* Color más oscuro al pasar el cursor */
+    transform: translateY(-3px); /* Efecto de elevación */
 }

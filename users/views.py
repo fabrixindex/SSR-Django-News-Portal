@@ -3,25 +3,38 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
-from .forms.users.forms import UserForm, EditProfileForm
+from .forms.users.forms import UserForm, EditProfileForm, EditProfilePhotoForm
+from .modelsProfile import Profile
 
 @login_required
 def get_user_profile(request):
     return render(request, "users/profile.html", {"user": request.user})
 
+
 @login_required
 def edit_user_profile(request):
+    try:
+        profile = request.user.profile  
+    except Profile.DoesNotExist:
+        profile = Profile.objects.create(user=request.user)  
+
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
-        if form.is_valid():
+        profile_form = EditProfilePhotoForm(request.POST, request.FILES, instance=profile)
+        
+        if form.is_valid() and profile_form.is_valid():
             form.save()
+            profile_form.save()
             messages.success(request, "Perfil actualizado correctamente.")
             return redirect('user_profile')
         else:
             messages.error(request, "Hubo un error al actualizar el perfil.")
     else:
         form = EditProfileForm(instance=request.user)
-    return render(request, 'users/edit_profile.html', {'form': form})
+        profile_form = EditProfilePhotoForm(instance=profile)
+
+    return render(request, 'users/edit_profile.html', {'form': form, 'profile_form': profile_form})
+
 
 @login_required
 def change_password(request):
