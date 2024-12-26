@@ -9,7 +9,7 @@ A simple article management system built with Django for handling articles, crea
 <p align="center">
     <strong>Click below to watch a video of the app in action!</strong>
     <br>
-    <a href="URL_DEL_VIDEO" target="_blank">Watch the video</a>
+    <a href="https://youtu.be/jEdRp65Qmqk" target="_blank">Watch the video</a>
 </p>
 
 ## Features
